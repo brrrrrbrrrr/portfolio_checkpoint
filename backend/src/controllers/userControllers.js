@@ -118,7 +118,7 @@ const add = async (req, res) => {
   const validationError = validate(req.body);
   if (validationError) {
     // Si les données ne sont pas valides, renvoyer une erreur 400
-    res.status(422).json({ error: validationError.message }); // Utiliser validationError.message pour obtenir le message d'erreur
+    return res.status(422).json({ error: validationError.message }); // Utiliser validationError.message pour obtenir le message d'erreur
   }
   const hashedPassword = await hashPassword(password);
 
@@ -141,6 +141,7 @@ const add = async (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
+  return null;
 };
 
 const getUserByLoginToNext = async (req, res, next) => {
