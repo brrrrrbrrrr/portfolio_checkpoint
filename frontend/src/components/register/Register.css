@@ -55,11 +55,37 @@
   margin-top: 10px;
   padding: 7px;
 
-  border: 1px solid rgb(195, 195, 195);
+  border: 1px solid var(--grey-input);
   border-radius: 3px;
 }
 
 .form-signup_errorMsg {
   margin-bottom: 1.5rem;
   color: var(--primary-red);
+}
+
+.connexion-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+button:disabled {
+  background-color: rgb(199, 197, 197);
+  color: white;
+}
+
+.form-btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.form-btn {
+  padding: 5px 10px;
+  background-color: grey;
+  color: white;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid white;
 }

@@ -223,16 +223,18 @@ function Register() {
             Les mots de passe ne correspondent pas
           </span>
         </label>
-        <button
-          type="submit"
-          disabled={
-            !validMail || !validPwd || !validMatch
-            // || !validePictureType
-          }
-          className="form-btn"
-        >
-          Valider
-        </button>
+        <div className="connexion-btn-container">
+          <button
+            type="submit"
+            disabled={
+              !validMail || !validPwd || !validMatch
+              // || !validePictureType
+            }
+            className="form-btn"
+          >
+            Valider
+          </button>
+        </div>
         <p className="form-signup_errorMsg">{error || ""}</p>
       </form>
     </div>
