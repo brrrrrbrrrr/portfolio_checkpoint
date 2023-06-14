@@ -35,7 +35,7 @@ const verifyPassword = (req, res) => {
         });
         delete req.user.password;
 
-        res.send({ token, recruiter: req.recruiter });
+        res.send({ token, user: req.user });
       } else {
         return res.sendStatus(401);
       }
