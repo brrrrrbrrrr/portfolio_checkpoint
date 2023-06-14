@@ -10,6 +10,7 @@ const validate = (data, forCreation = true) => {
   return joi
     .object({
       name: joi.string().max(45).presence(presence),
+      // picture: joi.string().max(45).presence(presence),
       firstname: joi.string().max(45).presence(presence),
       age: joi.string().max(45).presence(presence),
       mail: joi.string().email().presence(presence),
@@ -26,7 +27,8 @@ const add = async (req, res) => {
   // TODO validations (length, format...)
   // Valider les données avec Joi
   // Si les données sont valides, continuer le traitement
-  const { name, firstname, mail, password, age, description, typeId } =
+
+  const { name, firstname, mail, password, age, description, typeId, city } =
     req.body;
   const filePicture = req.file;
 
@@ -56,6 +58,7 @@ const add = async (req, res) => {
       picture,
       description,
       typeId,
+      city,
     })
     .then(([result]) => {
       // Je recupere l'id de mon nouvel utilisateur
@@ -97,6 +100,48 @@ const add = async (req, res) => {
       return res.sendStatus(500); // Ajouter le mot-clé 'return' avant d'appeler res.sendStatus()
     });
 };
+
+// const add = async (req, res) => {
+//   const {
+//     name,
+//     firstname,
+//     mail,
+//     picture,
+//     password,
+//     age,
+//     description,
+//     typeId,
+//     city,
+//   } = req.body;
+
+//   // TODO validations (length, format...)
+//   const validationError = validate(req.body);
+//   if (validationError) {
+//     // Si les données ne sont pas valides, renvoyer une erreur 400
+//     res.status(422).json({ error: validationError.message }); // Utiliser validationError.message pour obtenir le message d'erreur
+//   }
+//   const hashedPassword = await hashPassword(password);
+
+//   models.user
+//     .insert({
+//       name,
+//       firstname,
+//       mail,
+//       password: hashedPassword,
+//       age,
+//       picture,
+//       description,
+//       typeId,
+//       city,
+//     })
+//     .then(([result]) => {
+//       res.location(`/user/${result.insertId}`).sendStatus(201);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.sendStatus(500);
+//     });
+// };
 
 const getUserByLoginToNext = async (req, res, next) => {
   const { mail } = req.body;
