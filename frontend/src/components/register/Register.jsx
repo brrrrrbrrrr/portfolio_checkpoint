@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useApi from "../../services/useApi";
+import Success from "../success/Success";
 import "./Register.css";
 
 function Register() {
@@ -18,6 +19,8 @@ function Register() {
   const [validMatch, setValidMatch] = useState(false);
   const [validMail, setValidMail] = useState(false);
   const [description, setDescription] = useState("");
+  const [success, setSuccess] = useState("");
+  const successAccount = "successAccount";
 
   const [picture, setPicture] = useState(null);
   // const [validePictureType, setValidPictureType] = useState(false);
@@ -75,6 +78,7 @@ function Register() {
 
       .then((res) => {
         console.warn(res);
+        setSuccess(successAccount);
       })
       .catch((err) => {
         toast.error("Une erreur s'est produite", {
@@ -95,64 +99,68 @@ function Register() {
   };
 
   return (
-    <div className="form-container">
-      {" "}
-      <form onSubmit={handleSubmit} className="form-signup">
-        <label className="form-label">
-          Nom :
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          Prénom :
-          <input
-            type="text"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          Age :
-          <input
-            type="text"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          Ville :
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          Dev:
-          <input
-            type="text"
-            value={devType}
-            onChange={(e) => setDevType(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          Picture :
-          <input
-            type="text"
-            value={picture}
-            onChange={(e) => setPicture(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        {/* <label className="form-label">
+    <div>
+      {success ? (
+        <Success success={success} />
+      ) : (
+        <div className="form-container">
+          {" "}
+          <form onSubmit={handleSubmit} className="form-signup">
+            <label className="form-label">
+              Nom :
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Prénom :
+              <input
+                type="text"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Age :
+              <input
+                type="text"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Ville :
+              <input
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Dev:
+              <input
+                type="text"
+                value={devType}
+                onChange={(e) => setDevType(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <label className="form-label">
+              Picture :
+              <input
+                type="text"
+                value={picture}
+                onChange={(e) => setPicture(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            {/* <label className="form-label">
           Photo :
           <input
             type="file"
@@ -165,78 +173,86 @@ function Register() {
             Merci de choisir un fichier .JPEG/JPG/PNG
           </span>
         </label> */}
-        <label className="form-label_data">
-          Description de ton profil
-          <textarea
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="form-input_textearea"
-            maxLength={2000}
-            style={{ resize: "none" }}
-          />
-        </label>
-        <label className="form-label">
-          Email :
-          <input
-            type="text"
-            autoComplete="off"
-            id="mail"
-            aria-invalid={validMail ? "false" : "true"}
-            aria-describedby="uidnote"
-            value={mail}
-            onChange={(e) => setMail(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <span className={validMail || !mail ? "signup-hide" : "signup-invalid"}>
-          Email invalide
-        </span>
-        <label htmlFor="pass1" className="form-label">
-          Mot de passe :
-          <input
-            type="password"
-            id="pass1"
-            value={pass1}
-            onChange={(e) => setPass1(e.target.value)}
-            className="form-input"
-          />
-          <span
-            className={validPwd || !pass1 ? "signup-hide" : "signup-invalid"}
-          >
-            Doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère
-            spécial, 8-24 caractères
-          </span>
-        </label>
-        <label htmlFor="pass2" className="form-label">
-          Confirmer le mot de passe :
-          <input
-            type="password"
-            id="pass2"
-            value={pass2}
-            onChange={(e) => setPass2(e.target.value)}
-            className="form-input"
-          />
-          <span
-            className={validMatch || !pass2 ? "signup-hide" : "signup-invalid"}
-          >
-            Les mots de passe ne correspondent pas
-          </span>
-        </label>
-        <div className="connexion-btn-container">
-          <button
-            type="submit"
-            disabled={
-              !validMail || !validPwd || !validMatch
-              // || !validePictureType
-            }
-            className="form-btn"
-          >
-            Valider
-          </button>
+            <label className="form-label_data">
+              Description de ton profil
+              <textarea
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="form-input_textearea"
+                maxLength={2000}
+                style={{ resize: "none" }}
+              />
+            </label>
+            <label className="form-label">
+              Email :
+              <input
+                type="text"
+                autoComplete="off"
+                id="mail"
+                aria-invalid={validMail ? "false" : "true"}
+                aria-describedby="uidnote"
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
+                className="form-input"
+              />
+            </label>
+            <span
+              className={validMail || !mail ? "signup-hide" : "signup-invalid"}
+            >
+              Email invalide
+            </span>
+            <label htmlFor="pass1" className="form-label">
+              Mot de passe :
+              <input
+                type="password"
+                id="pass1"
+                value={pass1}
+                onChange={(e) => setPass1(e.target.value)}
+                className="form-input"
+              />
+              <span
+                className={
+                  validPwd || !pass1 ? "signup-hide" : "signup-invalid"
+                }
+              >
+                Doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère
+                spécial, 8-24 caractères
+              </span>
+            </label>
+            <label htmlFor="pass2" className="form-label">
+              Confirmer le mot de passe :
+              <input
+                type="password"
+                id="pass2"
+                value={pass2}
+                onChange={(e) => setPass2(e.target.value)}
+                className="form-input"
+              />
+              <span
+                className={
+                  validMatch || !pass2 ? "signup-hide" : "signup-invalid"
+                }
+              >
+                Les mots de passe ne correspondent pas
+              </span>
+            </label>
+            <div className="connexion-btn-container">
+              <button
+                type="submit"
+                disabled={
+                  !validMail || !validPwd || !validMatch
+                  // || !validePictureType
+                }
+                className="form-btn"
+              >
+                Valider
+              </button>
+            </div>
+            <p className="form-signup_errorMsg">{error || ""}</p>
+          </form>
         </div>
-        <p className="form-signup_errorMsg">{error || ""}</p>
-      </form>
+      )}
     </div>
   );
 }

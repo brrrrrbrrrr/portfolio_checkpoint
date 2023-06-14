@@ -11,6 +11,8 @@
 
 .form-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 10rem;
@@ -28,6 +30,8 @@
 .form-input_textearea {
   height: 10rem;
   margin-top: 1rem;
+  border: 1px solid var(--grey-input);
+  border-radius: 3px;
 }
 
 .form-label_data {
@@ -67,17 +71,14 @@
 .connexion-btn-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 2rem 0;
+  width: 100%;
 }
 
 button:disabled {
   background-color: rgb(199, 197, 197);
   color: white;
-}
-
-.form-btn-container {
-  width: 100%;
-  text-align: center;
 }
 
 .form-btn {
@@ -88,4 +89,29 @@ button:disabled {
   margin-bottom: 10px;
   cursor: pointer;
   border: 1px solid white;
+  width: 100px;
+}
+
+@media screen and (min-width: 320px) {
+  .form-label {
+    width: 15rem;
+  }
+  .form-label_data {
+    width: 18rem;
+    /* height: 20rem; */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .form-signup {
+    width: 40rem;
+    border: 1px solid white;
+    padding: 50px;
+    border-radius: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .form-label_data {
+    width: 30rem;
+  }
 }

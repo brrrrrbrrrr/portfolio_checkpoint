@@ -1,5 +1,6 @@
 .form-login_container {
   width: 20rem;
+  text-align: center;
 }
 
 .form-login {
@@ -40,4 +41,10 @@
   justify-content: center;
   flex-direction: column;
   margin: 2rem 0;
+}
+
+.connexion-done {
+  text-align: center;
+  margin: 20px;
+  font-style: italic;
 }
