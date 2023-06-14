@@ -13,7 +13,8 @@
   box-sizing: border-box;
 }
 a {
-  text-decoration: none;
+  text-decoration: none; /* Supprime la soulignement par défaut */
+  color: inherit; /* Utilise la couleur héritée du parent */
 }
 ul,
 ol,
