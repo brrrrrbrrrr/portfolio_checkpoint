@@ -9,7 +9,8 @@ const UserContext = createContext(null);
 function UserProvider({ children }) {
   const [userLog, setUserLog] = useState(null);
   const [projectData, setProjectData] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(1);
+  const [userData, setUserData] = useState([]);
 
   return (
     <UserContext.Provider
@@ -20,6 +21,8 @@ function UserProvider({ children }) {
         setProjectData,
         refresh,
         setRefresh,
+        userData,
+        setUserData,
       }}
     >
       {children}

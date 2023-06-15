@@ -11,7 +11,7 @@ import useApi from "../../services/useApi";
 
 function ProjectTB({ project }) {
   const api = useApi();
-  const { setRefresh, setProjectData } = useUser();
+  const { refresh, setRefresh, setProjectData } = useUser();
   const [deleted, setDeleted] = useState(false);
 
   const handleClick = () => {
@@ -30,8 +30,7 @@ function ProjectTB({ project }) {
     api
       .delete(`/project/${project.id}`)
       .then(() => {
-        setRefresh(true);
-        console.log("supprimé");
+        setRefresh(refresh + 1);
       })
       .catch((err) => {
         console.error(err);
