@@ -14,7 +14,7 @@ function Navbar() {
     setActiveLink(location.pathname);
   }, [location]);
 
-  return userLog || visitUserData ? (
+  return userLog || visitUserData.length !== 0 ? (
     <div className="nav-container">
       <ul className="nav-ul-container">
         <li>
