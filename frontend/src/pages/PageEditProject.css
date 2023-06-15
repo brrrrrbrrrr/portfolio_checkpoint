@@ -1,0 +1,12 @@
+.page-edit-project_container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-edit-project_data {
+  width: 20rem;
+}

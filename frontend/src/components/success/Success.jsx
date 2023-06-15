@@ -11,6 +11,24 @@ function Success({ success }) {
         </section>
       </div>
     );
+  if (success === "successAddProject") {
+    return (
+      <div>
+        <section className="registration-succes_msg">
+          Projet créer avec succès !
+        </section>
+      </div>
+    );
+  }
+  if (success === "successEditProject") {
+    return (
+      <div>
+        <section className="registration-succes_msg">
+          Projet edité avec succès !
+        </section>
+      </div>
+    );
+  }
 }
 
 Success.propTypes = {

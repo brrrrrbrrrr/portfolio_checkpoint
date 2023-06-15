@@ -8,12 +8,15 @@ const UserContext = createContext(null);
 // Création du provider
 function UserProvider({ children }) {
   const [userLog, setUserLog] = useState(null);
+  const [projectData, setProjectData] = useState([]);
 
   return (
     <UserContext.Provider
       value={{
         userLog,
         setUserLog,
+        projectData,
+        setProjectData,
       }}
     >
       {children}

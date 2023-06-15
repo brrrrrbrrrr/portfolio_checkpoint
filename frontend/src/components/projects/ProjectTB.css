@@ -1,0 +1,33 @@
+.project-tb_container {
+  width: 100%;
+}
+
+.project-tb_column {
+  width: 90%;
+  border: 1px solid white;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 3px;
+
+  position: relative;
+}
+
+.project-tb_column:hover {
+  border: 1px solid var(--primary-red);
+}
+
+.project-tb_icon {
+  margin: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.project-tb_delete {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+  cursor: pointer;
+}

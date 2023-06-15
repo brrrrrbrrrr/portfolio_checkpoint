@@ -1,0 +1,140 @@
+.project-full {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.project-name {
+  text-transform: uppercase;
+}
+.project-composant-container {
+  width: 50%;
+  position: relative;
+}
+
+.texte-container {
+  width: 100%;
+}
+.add-project_icon {
+  position: absolute;
+  top: 0;
+}
+.edit-project_icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.project-composant-container {
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.project-container::after {
+  content: "";
+  position: absolute;
+  background-color: var(--primary-red);
+  width: 1px;
+  height: 20%;
+  top: 0;
+  right: -5%;
+}
+
+/* horizontal line */
+.project-container::before {
+  content: "";
+  position: absolute;
+  background-color: var(--primary-red);
+  width: 20%;
+  height: 1px;
+  top: -5%;
+  right: 0;
+}
+
+.footer-description::after {
+  content: "";
+  position: absolute;
+  background-color: var(--primary-red);
+  width: 1px;
+  height: 20%;
+  bottom: 0;
+  left: -5%;
+}
+
+/* horizontal line */
+.footer-description::before {
+  content: "";
+  position: absolute;
+  background-color: var(--primary-red);
+  width: 20%;
+  height: 1px;
+  bottom: -5%;
+  left: 0;
+}
+.title-theme {
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 1.1rem;
+}
+
+.project-description {
+  text-align: justify;
+  margin: 0 5%;
+  font-size: 1.2rem;
+}
+
+.title-hardskill {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.footer-description {
+  margin-top: 2%;
+  display: flex;
+  text-decoration: none;
+  justify-content: space-between;
+  padding-left: 5%;
+  text-transform: uppercase;
+}
+.footer-description a {
+  color: var(--primary-red);
+  font-size: 1.5rem;
+  padding-bottom: 5%;
+}
+.footer-description a {
+  transform: scale(1.1);
+  transition: all ease-in-out 0.5s;
+}
+.footer-description a:not(:hover) {
+  transform: scale(1);
+  transition: all ease-in-out 0.5s;
+}
+.in-progress {
+  color: var(--primary-red);
+}
+@media screen and (max-width: 800px) {
+  .title-hardskill {
+    font-size: 1rem;
+  }
+  .title-theme {
+    font-size: 1rem;
+  }
+  .project-description {
+    font-size: 1rem;
+  }
+  .project-composant-container {
+    width: 85%;
+    padding-top: 5%;
+  }
+  .project-name {
+    font-size: 2rem;
+  }
+}

@@ -4,6 +4,7 @@
 
 .nav-container {
   width: 100%;
+  pointer-events: all;
 }
 
 .nav-ul-container {
