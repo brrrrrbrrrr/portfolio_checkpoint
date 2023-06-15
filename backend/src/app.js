@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 // import some node modules for later
 
 const fs = require("node:fs");
@@ -22,11 +23,27 @@ app.use(
   })
 );
 
+const allowCors = function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,POST,PUT,DELETE,OPTIONS"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+};
+
+app.use(allowCors);
+
 // import and mount the API routes
 
-const router = require("./router");
+const router = require("./routes/index.route");
 
-app.use(router);
+app.use("/api", router);
 
 // serve the `backend/public` folder for public resources
 

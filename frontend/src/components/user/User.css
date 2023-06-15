@@ -1,0 +1,16 @@
+.user_container {
+  border: 1px solid white;
+  width: 10rem;
+  text-align: center;
+  margin: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.user_container:hover {
+  border: 1px solid var(--primary-red);
+}
+
+.user_column {
+  margin: 10px;
+}

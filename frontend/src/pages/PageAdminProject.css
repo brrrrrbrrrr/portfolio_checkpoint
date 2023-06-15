@@ -1,0 +1,53 @@
+.page-admin-project_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-admin-project_form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-admin-project_h1 {
+  text-align: center;
+}
+
+.tech-checkbox_label {
+  /* width: 50%; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+}
+.tech-checkbox_container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.tech-checkbox_column {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.tech-checkbox_input {
+  margin: 5px 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .tech-checkbox_container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tech-checkbox_column {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

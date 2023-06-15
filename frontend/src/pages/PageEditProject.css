@@ -1,0 +1,26 @@
+.page-edit-project_container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-edit-project_data {
+  display: flex;
+  width: 20rem;
+}
+
+.page-edit-project_column {
+  width: 100%;
+}
+.page-edit-project_h1 {
+  text-align: center;
+  justify-content: center;
+}
+
+.no-project_h2 {
+  text-align: center;
+  margin-top: 20px;
+}

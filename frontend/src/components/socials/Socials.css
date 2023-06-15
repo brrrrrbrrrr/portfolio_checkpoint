@@ -1,0 +1,60 @@
+.socials-container {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+
+  margin-bottom: 10%;
+  width: 60%;
+  display: flex;
+  height: 10%;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.social-column {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.links-container {
+  display: flex;
+  margin-top: 10px;
+  width: 4rem;
+}
+
+.link-social {
+  display: flex;
+  width: 2rem;
+  justify-content: flex-end;
+}
+
+.email-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.email-content {
+  font-size: 1.2rem;
+}
+
+.link-social:hover {
+  transform: scale(1.1);
+  transition: all ease-in-out 0.5s;
+}
+.link-social:not(:hover) {
+  transform: scale(1);
+  transition: all ease-in-out 0.5s;
+}
+
+@media screen and (max-width: 800px) {
+  .socials-container {
+    width: 80%;
+    padding-right: 10px;
+  }
+  .email-content {
+    font-size: 1rem;
+    padding-right: 5px;
+  }
+}

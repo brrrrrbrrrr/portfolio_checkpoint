@@ -1,0 +1,50 @@
+.page-login-register_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-login-register_button {
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+  text-transform: uppercase;
+  transition: all, 0.3s;
+  border-radius: 3px;
+}
+
+.page-login-register_button:hover {
+  background-color: rgb(92, 91, 91);
+  color: white;
+}
+.page-login-register_content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+.page-login-register_button-active {
+  text-transform: uppercase;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgb(92, 91, 91);
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+.no-portfolio {
+  text-align: center;
+}
+.page-login-register_button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
