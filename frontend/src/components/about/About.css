@@ -15,12 +15,9 @@
   margin-top: 3%;
   animation: fadeIn 3s;
   font-size: 1.1rem;
+  word-wrap: break-word;
 }
 
-.project-tb_icon-edit {
-  position: absolute;
-  right: 0;
-}
 @keyframes fadeIn {
   0% {
     opacity: 0;

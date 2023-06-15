@@ -1,18 +1,17 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect } from "react";
 import "./About.css";
-import { BiEdit } from "react-icons/Bi";
+import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import useApi from "../../services/useApi";
 import { useUser } from "../../context/UserContext";
 
 function About() {
   const { userLog, userData, setUserData, visitUserData } = useUser();
-
   const api = useApi();
-  if (userLog) {
-    useEffect(() => {
+
+  useEffect(() => {
+    if (userLog) {
       api
         .get("/user")
         .then((res) => {
@@ -21,8 +20,10 @@ function About() {
         .catch((err) => {
           console.error(err);
         });
-    }, []);
-  } else setUserData(visitUserData);
+    } else {
+      setUserData(visitUserData);
+    }
+  }, []);
 
   return (
     <div>

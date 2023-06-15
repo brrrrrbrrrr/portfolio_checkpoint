@@ -3,6 +3,7 @@
 
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 50px;
 }
 
 @media screen and (min-width: 800px) {
@@ -11,5 +12,6 @@
     pointer-events: none;
     bottom: 0;
     right: 0;
+    margin-bottom: 0px;
   }
 }

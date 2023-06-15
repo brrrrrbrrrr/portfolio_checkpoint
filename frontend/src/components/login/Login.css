@@ -15,7 +15,7 @@
 .input-login-form {
   border: 1px solid var(--grey-input);
   height: 30px;
-  margin-top: 5px;
+  margin: 10px 0;
   padding: 5px;
   border-radius: 3px;
   width: 100%;

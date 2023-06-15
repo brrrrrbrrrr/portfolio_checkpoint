@@ -5,6 +5,7 @@ import "./PageLoginRegister.css";
 import { useUser } from "../context/UserContext";
 import useApi from "../services/useApi";
 import User from "../components/user/User";
+import Concept from "../components/concept/Concept";
 
 function Home() {
   const api = useApi();
@@ -39,6 +40,7 @@ function Home() {
 
   return (
     <div>
+      <Concept />
       {!userLog ? (
         <div className="page-login-register_container">
           <div className="page-login-register_button-container">

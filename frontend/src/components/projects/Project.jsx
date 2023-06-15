@@ -25,7 +25,9 @@ function Project() {
   useEffect(() => {
     let urlProject = "";
     if (userLog) urlProject = "/project";
-    if (visitUserData) urlProject = `/project/visit/${visitUserData.id}`;
+    if (visitUserData.length !== 0)
+      urlProject = `/project/visit/${visitUserData.id}`;
+
     api
       .get(urlProject)
       .then((res) => {

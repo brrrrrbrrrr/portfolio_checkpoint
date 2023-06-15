@@ -8,46 +8,48 @@ function WelcomeTypeWriter() {
   const { userLog, visitUserData } = useUser();
 
   return (
-    <div className="intro-container">
-      <div className="intro">
-        {userLog && (
-          <Typewriter
-            options={{
-              delay: 100,
-            }}
-            onInit={(typewriter) => {
-              typewriter
-                .typeString(
-                  `Bonjour, je suis ${userLog.firstname}, bienvenue sur mon portfolio.`
-                )
+    <div className="test">
+      <div className="intro-container">
+        <div className="intro">
+          {userLog && (
+            <Typewriter
+              options={{
+                delay: 100,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString(
+                    `Bonjour, je suis ${userLog.firstname}, bienvenue sur mon portfolio.`
+                  )
 
-                .callFunction(() => {})
-                .pauseFor(2500)
+                  .callFunction(() => {})
+                  .pauseFor(2500)
 
-                .callFunction(() => {})
-                .start();
-            }}
-          />
-        )}
-        {visitUserData && (
-          <Typewriter
-            options={{
-              delay: 100,
-            }}
-            onInit={(typewriter) => {
-              typewriter
-                .typeString(
-                  `Bonjour, je suis ${visitUserData.firstname}, bienvenue sur mon portfolio.`
-                )
+                  .callFunction(() => {})
+                  .start();
+              }}
+            />
+          )}
+          {visitUserData.length !== 0 && (
+            <Typewriter
+              options={{
+                delay: 100,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString(
+                    `Bonjour, je suis ${visitUserData.firstname}, bienvenue sur mon portfolio.`
+                  )
 
-                .callFunction(() => {})
-                .pauseFor(2500)
+                  .callFunction(() => {})
+                  .pauseFor(2500)
 
-                .callFunction(() => {})
-                .start();
-            }}
-          />
-        )}
+                  .callFunction(() => {})
+                  .start();
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

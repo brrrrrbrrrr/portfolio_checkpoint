@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import useApi from "../../services/useApi";
+import "../register/Register.css";
 
 function AboutEdit() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function AboutEdit() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-signup">
         <label className="form-label_data">
           Description de ton profil
           <textarea
