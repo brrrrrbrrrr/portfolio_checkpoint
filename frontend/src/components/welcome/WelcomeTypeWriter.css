@@ -1,0 +1,15 @@
+.intro-container {
+  width: 100%;
+
+  text-align: center;
+}
+
+.intro {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 800px) {
+  .intro-container {
+    padding-top: 5rem;
+  }
+}

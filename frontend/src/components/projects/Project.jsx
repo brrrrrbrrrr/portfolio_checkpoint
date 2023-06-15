@@ -12,17 +12,22 @@ import "./Swiper.css";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation, Mousewheel, Keyboard } from "swiper";
 import useApi from "../../services/useApi";
+import { useUser } from "../../context/UserContext";
 
 import ProjectInfos from "./ProjectInfos";
 
 function Project() {
+  const { userLog, visitUserData } = useUser();
   const [showProject, setShowProject] = useState();
   const [projectsArray, setProjectsArray] = useState([]);
   const api = useApi();
 
   useEffect(() => {
+    let urlProject = "";
+    if (userLog) urlProject = "/project";
+    if (visitUserData) urlProject = `/project/visit/${visitUserData.id}`;
     api
-      .get("/project")
+      .get(urlProject)
       .then((res) => {
         setProjectsArray(res.data);
       })
@@ -69,12 +74,17 @@ function Project() {
         </Swiper>
 
         <ProjectInfos showProject={showProject} />
-        <Link to="/project/admin">
-          <AiFillFileAdd size={25} className="add-project_icon" />
-        </Link>
-        <Link to="/projects/edit">
-          <BiEdit size={25} className="edit-project_icon" />
-        </Link>
+        {userLog && (
+          <>
+            {" "}
+            <Link to="/project/admin">
+              <AiFillFileAdd size={25} className="add-project_icon" />
+            </Link>
+            <Link to="/projects/edit">
+              <BiEdit size={25} className="edit-project_icon" />
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

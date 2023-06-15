@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PageAdminProject.css";
 import "../components/register/Register.css";
 
@@ -11,7 +11,9 @@ function PageAdminProject() {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("");
-  const [type, setType] = useState("");
+  const [devType, setDevType] = useState("");
+  const [link, setLink] = useState("");
+  const [typeOptions, setTypeOptions] = useState([]);
   const [success, setSuccess] = useState("");
   const successAddProject = "successAddProject";
 
@@ -21,8 +23,9 @@ function PageAdminProject() {
     const values = {
       name,
       theme,
-      typeId: type,
+      typeId: devType,
       description,
+      link,
     };
 
     api
@@ -32,6 +35,17 @@ function PageAdminProject() {
       })
       .catch((err) => console.error(err));
   };
+
+  useEffect(() => {
+    api
+      .get("/type")
+      .then((res) => {
+        setTypeOptions(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -62,13 +76,20 @@ function PageAdminProject() {
             </label>
 
             <label className="form-label">
-              Type :
-              <input
-                type="text"
-                className="form-input"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-              />
+              <select
+                value={devType}
+                onChange={(e) => setDevType(e.target.value)}
+                className="select-dev-type"
+              >
+                <option value="">Projet</option>
+                {typeOptions.map((item) => {
+                  return (
+                    <option value={item.id} key={item.id}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
             </label>
             <label className="form-label_data">
               Description de ton projet :
@@ -79,6 +100,15 @@ function PageAdminProject() {
                 className="form-input_textearea"
                 maxLength={2000}
                 style={{ resize: "none" }}
+              />
+            </label>
+            <label className="form-label">
+              Lien
+              <input
+                type="text"
+                className="form-input"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
               />
             </label>
             <button type="submit" className="form-btn">

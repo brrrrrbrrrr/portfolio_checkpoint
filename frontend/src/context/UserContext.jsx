@@ -11,6 +11,8 @@ function UserProvider({ children }) {
   const [projectData, setProjectData] = useState([]);
   const [refresh, setRefresh] = useState(1);
   const [userData, setUserData] = useState([]);
+  const [visitData, setVisitData] = useState([]);
+  const [visitUserData, setUserVisitData] = useState([]);
 
   return (
     <UserContext.Provider
@@ -23,6 +25,10 @@ function UserProvider({ children }) {
         setRefresh,
         userData,
         setUserData,
+        visitData,
+        setVisitData,
+        visitUserData,
+        setUserVisitData,
       }}
     >
       {children}

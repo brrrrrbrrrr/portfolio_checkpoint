@@ -13,11 +13,24 @@ function PageAdminProject() {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("");
-  const [type, setType] = useState("");
+  const [devType, setDevType] = useState("");
+  const [link, setLink] = useState("");
+  const [typeOptions, setTypeOptions] = useState([]);
   const [success, setSuccess] = useState("");
   const [reload, setReload] = useState(0);
   const [projectInfos, setProjectInfos] = useState([]);
   const successAddProject = "successEditProject";
+
+  useEffect(() => {
+    api
+      .get("/type")
+      .then((res) => {
+        setTypeOptions(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   useEffect(() => {
     api.get(`/project/${projectData.id}`).then((res) => {
@@ -25,7 +38,7 @@ function PageAdminProject() {
       setName(res.data.name);
       setDescription(res.data.description);
       setTheme(res.data.theme);
-      setType(res.data.typeId);
+      setDevType(res.data.typeId);
     });
   }, [success]);
 
@@ -36,13 +49,15 @@ function PageAdminProject() {
       theme: projectInfos.theme,
       typeId: projectInfos.typeId,
       description: projectInfos.description,
+      link: projectInfos.link,
     };
 
     const updatedValues = {
       name,
       theme,
       description,
-      typeId: type,
+      typeId: devType,
+      link,
     };
     const updatedData = {};
     Object.keys(updatedValues).forEach((key) => {
@@ -98,13 +113,19 @@ function PageAdminProject() {
             </label>
 
             <label className="form-label">
-              Type :
-              <input
-                type="text"
-                className="form-input"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-              />
+              <select
+                value={devType}
+                onChange={(e) => setDevType(e.target.value)}
+                className="select-dev-type"
+              >
+                {typeOptions.map((item) => {
+                  return (
+                    <option value={item.id} key={item.id}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
             </label>
             <label className="form-label_data">
               Description de ton projet :
@@ -115,6 +136,15 @@ function PageAdminProject() {
                 className="form-input_textearea"
                 maxLength={2000}
                 style={{ resize: "none" }}
+              />
+            </label>
+            <label className="form-label">
+              Lien
+              <input
+                type="text"
+                className="form-input"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
               />
             </label>
             <button type="submit" className="form-btn">

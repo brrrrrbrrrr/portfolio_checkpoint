@@ -20,6 +20,7 @@ function Register() {
   const [validMail, setValidMail] = useState(false);
   const [description, setDescription] = useState("");
   const [success, setSuccess] = useState("");
+  const [typeOptions, setTypeOptions] = useState([]);
   const successAccount = "successAccount";
 
   const [picture, setPicture] = useState(null);
@@ -46,6 +47,17 @@ function Register() {
   //     setValidPictureType(false);
   //   }
   // }
+
+  useEffect(() => {
+    api
+      .get("/type")
+      .then((res) => {
+        setTypeOptions(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   useEffect(() => {
     const result = MAIL_REDEX.test(mail);
@@ -143,13 +155,20 @@ function Register() {
               />
             </label>
             <label className="form-label">
-              Dev:
-              <input
-                type="text"
+              <select
                 value={devType}
                 onChange={(e) => setDevType(e.target.value)}
-                className="form-input"
-              />
+                className="select-dev-type"
+              >
+                <option value="">Développeur</option>
+                {typeOptions.map((item) => {
+                  return (
+                    <option value={item.id} key={item.id}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
             </label>
             <label className="form-label">
               Picture :

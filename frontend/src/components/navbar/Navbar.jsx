@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 
 function Navbar() {
-  const { userLog } = useUser();
+  const { userLog, visitUserData } = useUser();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("");
 
@@ -14,12 +14,12 @@ function Navbar() {
     setActiveLink(location.pathname);
   }, [location]);
 
-  return userLog ? (
+  return userLog || visitUserData ? (
     <div className="nav-container">
       <ul className="nav-ul-container">
         <li>
           <Link
-            to="/"
+            to="/home"
             className={`link ${activeLink === "/" ? "active-menu" : ""}`}
           >
             Accueil

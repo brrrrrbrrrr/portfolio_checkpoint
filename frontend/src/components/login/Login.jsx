@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useApi from "../../services/useApi";
 import { useUser } from "../../context/UserContext";
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
   const api = useApi();
   const refMail = useRef();
   const refPass = useRef();
@@ -28,6 +30,7 @@ function Login() {
         const userObject = user;
         setUserLog(userObject);
         setSucces(true);
+        navigate("/home");
       })
       .catch((err) => {
         // Je traite et renvoi les erreurs

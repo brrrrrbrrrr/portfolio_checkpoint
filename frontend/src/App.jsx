@@ -5,6 +5,7 @@ import UserProvider from "./context/UserContext";
 import PageLoginRegister from "./pages/PageLoginRegister";
 import PageEditOneProject from "./pages/PageEditOneProject";
 import About from "./components/about/About";
+import WelcomeTypeWriter from "./components/welcome/WelcomeTypeWriter";
 
 import Project from "./components/projects/Project";
 import PageNav from "./pages/PageNav";
@@ -13,6 +14,7 @@ import "./App.css";
 import PageAdminProject from "./pages/PageAdminProject";
 import PageEditProject from "./pages/PageEditProject";
 import AboutEdit from "./components/about/AboutEdit";
+import Socials from "./components/socials/Socials";
 
 function App() {
   const [homeAnimation, setHomeAnimation] = useState(false);
@@ -33,6 +35,8 @@ function App() {
           <Route path="/project/edit" element={<PageEditOneProject />} />
           <Route path="/about" element={<About />} />
           <Route path="/about/edit" element={<AboutEdit />} />
+          <Route path="/home" element={<WelcomeTypeWriter />} />
+          <Route path="/contact" element={<Socials />} />
         </Routes>
       </UserProvider>
     </div>

@@ -8,19 +8,21 @@ import useApi from "../../services/useApi";
 import { useUser } from "../../context/UserContext";
 
 function About() {
-  const { userData, setUserData } = useUser();
+  const { userLog, userData, setUserData, visitUserData } = useUser();
 
   const api = useApi();
-  useEffect(() => {
-    api
-      .get("/user")
-      .then((res) => {
-        setUserData(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  if (userLog) {
+    useEffect(() => {
+      api
+        .get("/user")
+        .then((res) => {
+          setUserData(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }, []);
+  } else setUserData(visitUserData);
 
   return (
     <div>
@@ -28,9 +30,11 @@ function About() {
         <div className="description-column">
           <div className="texte-container">
             <p className="p-content p-content-1">{userData.description}</p>
-            <Link to="/about/edit">
-              <BiEdit size={25} className="project-tb_icon-edit" />
-            </Link>
+            {userLog && (
+              <Link to="/about/edit">
+                <BiEdit size={25} className="project-tb_icon-edit" />
+              </Link>
+            )}
           </div>
         </div>
       </article>
