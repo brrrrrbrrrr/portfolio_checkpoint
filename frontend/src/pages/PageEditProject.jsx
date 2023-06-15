@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./PageEditProject.css";
 import useApi from "../services/useApi";
 import ProjectTB from "../components/projects/ProjectTB";
+import { useUser } from "../context/UserContext";
 
 function PageEditProject() {
+  const { refresh } = useUser();
   const api = useApi();
   const [projectData, setProjectData] = useState([]);
   useEffect(() => {
@@ -15,7 +17,8 @@ function PageEditProject() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [refresh]);
+
   return (
     <div className="page-edit-project_container">
       <div className="page-edit-project_column">

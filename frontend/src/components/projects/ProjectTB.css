@@ -2,6 +2,28 @@
   width: 100%;
 }
 
+.modal-delete {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin-right: 20px;
+  padding: 10px 20px;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.modal-delete_btn {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.btn-delete {
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .project-tb_column {
   width: 90%;
   border: 1px solid white;
