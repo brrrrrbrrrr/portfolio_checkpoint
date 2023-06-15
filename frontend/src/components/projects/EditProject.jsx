@@ -19,6 +19,8 @@ function PageAdminProject() {
   const [success, setSuccess] = useState("");
   const [reload, setReload] = useState(0);
   const [projectInfos, setProjectInfos] = useState([]);
+  const [techOptions, setTechOptions] = useState([]);
+  const [tech, setTech] = useState([]);
   const successAddProject = "successEditProject";
 
   useEffect(() => {
@@ -39,8 +41,52 @@ function PageAdminProject() {
       setDescription(res.data.description);
       setTheme(res.data.theme);
       setDevType(res.data.typeId);
+      setLink(res.data.link);
     });
   }, [success]);
+
+  useEffect(() => {
+    api
+      .get("/tech")
+      .then((res) => {
+        setTechOptions(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    api
+      .get(`/tech/${projectData.id}`)
+      .then((res) => {
+        setTech(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const handleTechChange = (e, techId) => {
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      const isTechIdExists = tech.some(
+        (techItem) => techItem.techId === techId
+      );
+
+      if (!isTechIdExists) {
+        setTech((prevTech) => [
+          ...prevTech,
+          {
+            projectId: projectData.id,
+            projectUserId: projectData.userId,
+            techId,
+          },
+        ]);
+      }
+    } else {
+      setTech((prevTech) =>
+        prevTech.filter((techItem) => techItem.techId !== techId)
+      );
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +98,11 @@ function PageAdminProject() {
       link: projectInfos.link,
     };
 
+    const techIds = [];
+
+    tech.forEach((techItem) => {
+      techIds.push(techItem.techId);
+    });
     const updatedValues = {
       name,
       theme,
@@ -127,6 +178,24 @@ function PageAdminProject() {
                 })}
               </select>
             </label>
+            <div className="tech-checkbox_container">
+              <div className="tech-checkbox_column">
+                {techOptions.map((item) => (
+                  <label key={item.id} className="tech-checkbox_label">
+                    <input
+                      type="checkbox"
+                      value={tech}
+                      className="tech-checkbox_input"
+                      checked={tech.some(
+                        (techItem) => techItem.techId === item.id
+                      )}
+                      onChange={(e) => handleTechChange(e, item.id)}
+                    />
+                    {item.name}
+                  </label>
+                ))}
+              </div>
+            </div>
             <label className="form-label_data">
               Description de ton projet :
               <textarea

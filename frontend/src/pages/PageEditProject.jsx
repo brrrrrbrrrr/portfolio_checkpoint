@@ -22,8 +22,13 @@ function PageEditProject() {
   return (
     <div className="page-edit-project_container">
       <div className="page-edit-project_column">
-        <h1>Editer un projet </h1>
+        <h1 className="page-edit-project_h1">Editer un projet </h1>
         <div className="page-edit-project_data">
+          {projectData.length === 0 && (
+            <h2 className="no-project_h2">
+              Tu n'as pas encore ajouté de projet
+            </h2>
+          )}
           {projectData.map((item) => {
             return <ProjectTB key={item.id} project={item} />;
           })}

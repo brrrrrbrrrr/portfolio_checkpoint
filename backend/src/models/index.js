@@ -44,6 +44,16 @@ const ProjectManager = require("./ProjectManager");
 models.project = new ProjectManager();
 models.project.setDatabase(pool);
 
+const TypeManager = require("./TypeManager");
+
+models.type = new TypeManager();
+models.type.setDatabase(pool);
+
+const TechManager = require("./TechManager");
+
+models.tech = new TechManager();
+models.tech.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

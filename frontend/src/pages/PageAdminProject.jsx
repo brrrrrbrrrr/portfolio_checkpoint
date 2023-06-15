@@ -15,6 +15,8 @@ function PageAdminProject() {
   const [link, setLink] = useState("");
   const [typeOptions, setTypeOptions] = useState([]);
   const [success, setSuccess] = useState("");
+  const [techOptions, setTechOptions] = useState([]);
+  const [tech, setTech] = useState([]);
   const successAddProject = "successAddProject";
 
   const handleSubmit = (e) => {
@@ -26,6 +28,7 @@ function PageAdminProject() {
       typeId: devType,
       description,
       link,
+      techId: tech,
     };
 
     api
@@ -46,6 +49,26 @@ function PageAdminProject() {
         console.error(err);
       });
   }, []);
+
+  useEffect(() => {
+    api
+      .get("/tech")
+      .then((res) => {
+        setTechOptions(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+  const handleTechChange = (e, techId) => {
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      // Ajouter l'ID de la technologie au tableau tech
+      setTech((prevTech) => [...prevTech, techId]);
+    } else {
+      // Supprimer l'ID de la technologie du tableau tech
+      setTech((prevTech) => prevTech.filter((id) => id !== techId));
+    }
+  };
 
   return (
     <div>
@@ -91,6 +114,22 @@ function PageAdminProject() {
                 })}
               </select>
             </label>
+            <div className="tech-checkbox_container">
+              <div className="tech-checkbox_column">
+                {techOptions.map((item) => (
+                  <label key={item.id} className="tech-checkbox_label">
+                    <input
+                      type="checkbox"
+                      value={item.id}
+                      className="tech-checkbox_input"
+                      checked={tech.includes(item.id)}
+                      onChange={(e) => handleTechChange(e, item.id)}
+                    />
+                    {item.name}
+                  </label>
+                ))}
+              </div>
+            </div>
             <label className="form-label_data">
               Description de ton projet :
               <textarea

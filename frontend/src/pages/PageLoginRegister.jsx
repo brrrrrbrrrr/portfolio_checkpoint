@@ -81,6 +81,12 @@ function Home() {
           <div className="page-login-register_content-container">
             {connection && <Login />}
             {register && <Register />}
+            {visit && visitData.length === 0 && (
+              <h2 className="no-portfolio">
+                {" "}
+                Pas encore de portfolio dans la base de donnée
+              </h2>
+            )}
             {visit &&
               visitData.map((item) => {
                 return <User key={item.id} user={item} />;

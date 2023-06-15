@@ -24,12 +24,20 @@ function AboutEdit() {
     const updatedValues = {
       description,
     };
+
     const updatedData = {};
     Object.keys(updatedValues).forEach((key) => {
       if (updatedValues[key] !== currentValues[key]) {
         updatedData[key] = updatedValues[key];
       }
     });
+
+    if (Object.keys(updatedData).length === 0) {
+      // Aucun changement détecté, pas besoin d'envoyer de requête
+      navigate("/about");
+      return;
+    }
+
     api
       .put("/user", updatedData)
       .then(() => {

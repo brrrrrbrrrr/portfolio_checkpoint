@@ -38,7 +38,9 @@
   border: 1px solid white;
   border-radius: 3px;
 }
-
+.no-portfolio {
+  text-align: center;
+}
 .page-login-register_button-container {
   display: flex;
   flex-direction: column;

@@ -107,7 +107,6 @@ function Register() {
           setError(err.response.data);
         }
       });
-    console.warn("form data", formData);
   };
 
   return (

@@ -20,7 +20,7 @@ function Navbar() {
         <li>
           <Link
             to="/home"
-            className={`link ${activeLink === "/" ? "active-menu" : ""}`}
+            className={`link ${activeLink === "/home" ? "active-menu" : ""}`}
           >
             Accueil
           </Link>

@@ -159,7 +159,63 @@ const getUserByLoginToNext = async (req, res, next) => {
   return null;
 };
 
+const updateUser = (req, res) => {
+  const updatedValues = req.body;
+  const idUser = req.payload.sub.id;
+  const errors = validate(updatedValues, false);
+  if (errors) {
+    console.error(errors);
+    return res.status(422).json({ error: errors.message });
+  }
+  models.user
+    .update(updatedValues, idUser)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+  return null;
+};
+
+const browse = (req, res) => {
+  models.user
+    .findAll()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const read = (req, res) => {
+  const userId = req.payload.sub.id;
+  models.user
+    .find(userId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   add,
   getUserByLoginToNext,
+  read,
+  updateUser,
+  browse,
 };
